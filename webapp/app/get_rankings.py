@@ -21,7 +21,6 @@ def get_rankings(user_interests):
     destinations=[]
     df_destinations=pd.read_csv('vacation_destinations.txt', header=None, names=['Destination'])
     destinations = sorted(df_destinations['Destination'].values.tolist())
-    destinations[:3]
 
     # connect to my local mySQL server and open the vacation database
     engine = create_engine('mysql+mysqldb://'+sql_username+':'+sql_password+'@127.0.0.1:3306/vacation', echo=False)
@@ -31,7 +30,8 @@ def get_rankings(user_interests):
     def stem(s):
             return preprocessing.preprocess_pipeline(s, return_as_str=True, do_remove_stopwords=True, do_clean_html=False)
     interests_regex={}
-    for interest in user_input.split(','):
+    max_interests = 10
+    for interest in user_input.split(',')[:max_interests]:
         if interest == '':
             continue
         # remove any characters that that aren't alphanumeric.
@@ -71,7 +71,6 @@ def get_rankings(user_interests):
         destinations_interests = destinations_interests.join(df_timeline, how='outer').fillna(0)
         interests_processed += 1
         print interests_processed, 'interests processed'
-    print destinations_interests.head()
 
     # Rank the interests for each destination.  Normalize the number of tweets.
     def normalize(x):

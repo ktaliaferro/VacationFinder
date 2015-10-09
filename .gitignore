@@ -3,3 +3,4 @@ mysql_login_info.py
 *.pyc
 *.jpg
 *~
+.ipynb_checkpoints/

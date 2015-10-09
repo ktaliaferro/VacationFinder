@@ -26,16 +26,13 @@ def cities_output():
   if interests == 'cached_results':
     use_dummy = True
     interests = 'golf, hiking, horseback, skiing, gardening, karate, basketball, cooking, zoo, chess, boats, soccer, coffee, frisbee, shopping, football, baseball, surfing, volunteering, kayaking, museums, biking, scuba, swimming'
-  start = time.clock()
-  print 'starting clock'
+  start = time.time()
   if use_dummy:
     rankings = get_rankings_dummy.get_rankings(interests)
   else:
     rankings = get_rankings.get_rankings(interests)
-  end = time.clock()
-  print 'stopping clock'
+  end = time.time()
   print 'runtime', end-start, 'seconds'
-  #lengths = [len(rankings[0]),len(rankings[1])]
   length = len(rankings)
   return render_template("output.html", rankings = rankings, interests=interests, length=length, runtime=end-start)
 
