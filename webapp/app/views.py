@@ -25,7 +25,7 @@ def cities_output():
   use_dummy = False
   if interests == 'cached_results':
     use_dummy = True
-    interests = 'golf, hiking, horseback, skiing, gardening, karate, basketball, cooking, zoo, chess, boats, soccer, coffee, frisbee, shopping, football, baseball, surfing, volunteering, kayaking, museums, biking, scuba, swimming'
+    interests = 'boats, surfing, kayaking, swimming'
   start = time.time()
   if use_dummy:
     rankings = get_rankings_dummy.get_rankings(interests)

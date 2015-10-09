@@ -72,7 +72,7 @@ def get_rankings(user_interests):
         interests_processed += 1
         print interests_processed, 'interests processed'
 
-    # Rank the interests for each destination.  Normalize the number of tweets.
+    # Normalize each interest column
     def normalize(x):
             if x.std() > 0.01:
                 return (x-x.mean())/x.std()
@@ -81,7 +81,8 @@ def get_rankings(user_interests):
     destinations_interests_scores = destinations_interests.copy()
     destinations_interests_scores = destinations_interests_scores.apply(normalize)
 
-    # Store the top three interests for each destination in a dataframe
+    # Rank the destinations and then
+    # store the top three interests for each destination in a dataframe
     destination_col = destinations_interests_scores.sum(axis=1).sort(ascending=False, inplace=False).index.values.tolist()
     interest_col = []
     for destination in destination_col:
