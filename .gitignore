@@ -4,3 +4,4 @@ mysql_login_info.py
 *.jpg
 *~
 .ipynb_checkpoints/
+.goutputstream*
