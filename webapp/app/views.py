@@ -33,7 +33,7 @@ def cities_output():
     rankings = get_rankings.get_rankings(interests)
   end = time.time()
   print 'runtime', end-start, 'seconds'
-  length = len(rankings)
+  length = min(20,len(rankings))
   return render_template("output.html", rankings = rankings, interests=interests, length=length, runtime=end-start)
 
 if __name__ == "__main__":

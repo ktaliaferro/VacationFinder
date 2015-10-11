@@ -102,20 +102,11 @@
       <h3>Top 20 Destinations</h3>
       <table class="table table-hover">
       <tr><th>Rank</th><th>Destination</th><th>Top Interests</th></tr>
-      {% for i in range(20) %}
+      {% for i in range(length) %}
       <tr><td>{{ i+1 }}</td><td>{{ rankings[i][0] }}</td><td>{{ rankings[i][1] }}</td></tr>
       {% endfor %}
       </table>
       <br><br>
-      <!--
-      <h3>Next {{length-20}} Destinations</h3>
-      <table class="table table-hover">
-      <tr><th>Rank</th><th>Destination</th><th>Top Interests</th></tr>
-      {% for i in range(20,length) %}
-      <tr><td>{{ i+1 }}</td><td>{{ rankings[i][0] }}</td><td>{{ rankings[i][1] }}</td></tr>
-      {% endfor %}
-      </table>
-      -->
 
      </div><!-- /.container -->
 
