@@ -74,24 +74,22 @@ def get_rankings(user_interests):
         interests_processed += 1
         print interests_processed, 'interests processed'
         
-    # count the number of timeline tweets for each destination
-    #NEW
-    db = mdb.connect(user="root", host="localhost", passwd="locmsqloc!", db="vacation", charset='utf8')
-    sql_query = ("SELECT Destination, COUNT(*)" +
-                 " FROM timeline_tweets_stemmed_unique GROUP BY Destination")
-    with db:
-        cur = db.cursor()
-        cur.execute(sql_query)
-        query_results = cur.fetchall()
-    query_results = map(list, zip(*[list(i) for i in query_results]))
-    df_tweets_per_destination = pd.DataFrame({'Destination': query_results[0], 'Tweets': query_results[1]}).set_index('Destination')
-    
     # If you want to normalize the rows,
     # change normalize_rows to True.
     normalize_rows = False
     if normalize_rows:
+        # count the number of timeline tweets for each destination
+        db = mdb.connect(user=sql_username, host="localhost", passwd=sql_password, db="vacation", charset='utf8')
+        sql_query = ("SELECT Destination, COUNT(*)" +
+                     " FROM timeline_tweets_stemmed_unique GROUP BY Destination")
+        with db:
+            cur = db.cursor()
+            cur.execute(sql_query)
+            query_results = cur.fetchall()
+        query_results = map(list, zip(*[list(i) for i in query_results]))
+        df_tweets_per_destination = pd.DataFrame({'Destination': query_results[0], 'Tweets': query_results[1]}).set_index('Destination')
         destinations_interests_rows_normalized = destinations_interests.join(df_tweets_per_destination, how='outer').fillna(0)
-        destinations_interests_rows_normalized.head()
+
         for interest in interests:
             destinations_interests_rows_normalized[interest]=destinations_interests_rows_normalized[interest].astype(float) / destinations_interests_rows_normalized['Tweets'].astype(float)
         destinations_interests_rows_normalized = destinations_interests_rows_normalized.drop('Tweets', axis=1)
@@ -136,6 +134,5 @@ def get_rankings(user_interests):
         interest_destination.append([destination_col[i],interest_col[i]])
 
     # Return the results as a 2D list
-    print interest_destination
     return interest_destination
 
