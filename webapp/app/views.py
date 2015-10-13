@@ -35,6 +35,10 @@ def cities_output():
   print 'runtime', end-start, 'seconds'
   length = min(20,len(rankings))
   return render_template("output.html", rankings = rankings, interests=interests, length=length, runtime=end-start)
+  
+@app.route('/slides')
+def slides():
+    return render_template("slides.html")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

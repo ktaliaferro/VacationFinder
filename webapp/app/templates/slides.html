@@ -19,15 +19,12 @@
     <link href="starter-template.css" rel="stylesheet">
     
     <style type="text/css">
+    <!--
     body {
-      background-image: url("static/images/airplane-generic_transparent.jpg");
-      -moz-background-size: cover;
-      -webkit-background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center;
-      background-size: cover;
+      background-color: #E0F0FF;
+
     }
+    -->
     </style>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -58,7 +55,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="https://github.com/ktaliaferro/VacationFinder">GitHub</a></li>
-            <li><a href="/slides">Slides</a></li>
+            <li class="active"><a href="/slides">Slides</a></li>
             <!--
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -93,23 +90,11 @@
     <script src="static/js/bootstrap.min.js"></script>
 
   </div> <!-- /.container-->
+    <h3></h3>
 
     <div class="container">
-      <div class="starter-template">
-        <h2></h2>
-        <p>You input {{interests}}.</p>
-      </div>
-      
-      <h3>Top 20 Destinations</h3>
-      <table class="table table-hover">
-      <tr><th>Rank</th><th>Destination</th><th>Top Interests</th></tr>
-      {% for i in range(length) %}
-      <tr><td>{{ i+1 }}</td><td>{{ rankings[i][0] }}</td><td>{{ rankings[i][1] }}</td></tr>
-      {% endfor %}
-      </table>
-      <br><br>
-
-     </div><!-- /.container -->
+      <script async class="speakerdeck-embed" data-id="1306fd0ac9014c52ab564097bd33e738" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+    </div><!-- /.container -->
 
     <div class="container">
       <div class="starter-template">
