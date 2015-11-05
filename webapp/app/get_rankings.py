@@ -40,7 +40,7 @@ def get_rankings(user_interests):
         interest = re.sub(r'[^\w]+', '', interest)
         if False:
             # Insert MySQL regex for spaces (this isn't working yet).  Once
-            # this is working, make sure to edit the re.sub line above
+            # this is working, edit the re.sub line above
             # so that it doesn't remove spaces.
             interests_regex[interest.strip()]= re.sub(' ',r'[[:space:]]',stem(interest))
         interests_regex[interest.strip()]= stem(interest)
@@ -121,6 +121,11 @@ def get_rankings(user_interests):
         # Only use the top 3 interests.
         interest_col.append(', '.join(interest_list[:3]))  
     df_interest_destination = pd.DataFrame({'Interest': interest_col, 'Destination': destination_col})
+    # Remove New York (The algorithm doens't work very well for
+    # New York because it is both a city and a state).
+    remove_new_york = True
+    if remove_new_york:
+        df_interest_destination = df_interest_destination[df_interest_destination.Destination != 'New York']
     # Reorder the columns.
     df_interest_destination = df_interest_destination[['Destination', 'Interest']]
     # Drop destinations without any interests.
