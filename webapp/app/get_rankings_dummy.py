@@ -1,7 +1,5 @@
 """This dummy version of get_rankings imports pre-computed rankings
-from my MySQL server and is used for testing purposes.  It does not
-actually use the interests in the input argument."""
-
+from the MySQL server and is used for testing purposes."""
 
 # packages
 import re
@@ -14,7 +12,7 @@ from sqlalchemy import create_engine
 from mysql_login_info import sql_username, sql_password
 import preprocessing
 
-def get_rankings(interests):
+def get_rankings_dummy():
     # Connect to my local mySQL server and open the vacation database
     engine = create_engine('mysql+mysqldb://'+sql_username+':'+sql_password+'@127.0.0.1:3306/vacation', echo=False)
     

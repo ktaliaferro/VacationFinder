@@ -20,15 +20,14 @@ def cities_input():
 
 @app.route('/output')
 def cities_output():
-  #pull 'ID' from input field and store it
-  interests = request.args.get('ID')
-  use_dummy = False
-  if interests == 'cached_results':
-    use_dummy = True
-    interests = 'boats, surfing, kayaking, swimming'
+  interests = request.args.get('ID') # pull interests from the input page
   start = time.time()
-  if use_dummy:
-    rankings = get_rankings_dummy.get_rankings(interests)
+  # If the user inputs the string 'cached_results', then the app will return 
+  # cached results for boats, surfing, kayaking, and swimming.  This is for 
+  # testing and demonstration purposes only.
+  if interests == 'cached_results':
+    interests = 'boats, surfing, kayaking, swimming'
+    rankings = get_rankings_dummy.get_rankings_dummy()
   else:
     rankings = get_rankings.get_rankings(interests)
   end = time.time()
