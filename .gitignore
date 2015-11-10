@@ -6,3 +6,4 @@ mysql_login_info.py
 .ipynb_checkpoints/
 .goutputstream*
 *.pdf
+get_rankings_test.py

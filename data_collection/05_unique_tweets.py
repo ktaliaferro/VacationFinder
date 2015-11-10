@@ -1,5 +1,5 @@
-"""This will create a timeline_tweets_stemmed_unique table that contains
-all unique tweets from timeline_tweets_stemmed."""
+"""This will create a timeline_tweets_stemmed_unique table in MySQL that contains
+all unique tweets from the timeline_tweets_stemmed table."""
 
 import pandas as pd
 import re
